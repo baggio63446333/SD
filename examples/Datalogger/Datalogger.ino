@@ -20,14 +20,13 @@
 
  */
 
-#include <SPI.h>
 #include <SD.h>
 
 const int chipSelect = 4;
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -50,7 +49,7 @@ void loop() {
 
   // read three sensors and append to the string:
   for (int analogPin = 0; analogPin < 3; analogPin++) {
-    int sensor = analogRead(analogPin);
+    int sensor = analogRead(A0 + analogPin);
     dataString += String(sensor);
     if (analogPin < 2) {
       dataString += ",";
