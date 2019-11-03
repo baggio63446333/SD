@@ -1,24 +1,25 @@
-= SD Library for Arduino =
+= SD Library for Spresense Arduino =
 
 The SD library allows for reading from and writing to SD cards.
 
 For more information about this library please visit us at
 http://www.arduino.cc/en/Reference/SD
 
-== License ==
+This is simple wrapper of SPRESENSE SDHCI library and makes it possible to build the existing sketches for Arduino.
 
- Copyright (C) 2009 by William Greiman
-Copyright (c) 2010 SparkFun Electronics
+.sample.ino
+[source, cpp]
+----
+#include <SD.h>
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+File myFile;
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+void setup() {
+  SD.begin();
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  myFile = SD.open("test.txt", FILE_WRITE);
+  myFile.println("testing 1, 2, 3.");
+  myFile.close();
+}
+----
+
